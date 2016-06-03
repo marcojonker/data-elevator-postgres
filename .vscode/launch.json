@@ -107,7 +107,7 @@
 			"request": "launch",
 			"program": "${workspaceRoot}/elevator.js",
 			"stopOnEntry": false,
-			"args": ["down", "-f=1"],
+			"args": ["down", "-f=2"],
 			"cwd": "${workspaceRoot}",
 			"preLaunchTask": null,
 			"runtimeExecutable": null,
