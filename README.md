@@ -1,12 +1,12 @@
-# DATA ELEVATOR MONGODB #
+# DATA ELEVATOR POSTGRES #
 
-The data elevator mongodb is an easy to use and very flexible utility for migrating data sources based on the NPM module [data elevator](Link URL). The only difference is that data elevator mongodb stores its current migration level in a MongoDb database.
+The data elevator postgres is an easy to use and very flexible utility for migrating data sources based on the NPM module [data elevator](Link URL). The only difference is that data elevator postgres stores its current migration level in a Postgres database.
 
 Storing the current migration level in a database brings advantages when a project shares its data source with multiple running instances of a project. For example when multiple developers working with one database or the project runs on multiple servers.
 
 # INSTALL #
 
-* Add the data-elevator-mongodb to packages.json
+* Add the data-elevator-postgres to packages.json
 * Install the module
 ```
 #!shell
@@ -21,7 +21,7 @@ Note: It is best to run commands from the root directory of you project because 
 1 Construct a new data elevator for the project.
 ```
 #!shell
-node ./node-modules/data-elevator-mongodb/elevator.js construct
+node ./node-modules/data-elevator-postgres/elevator.js construct
 ```
 2 Add a new floor.
 ```
@@ -52,15 +52,15 @@ Construct a new data elevator in you project. In principle this command is only 
 
 ```
 #!shell
-Command: 'node ./node-modules/data-elevator-mongodb/elevator.js construct'
+Command: 'node ./node-modules/data-elevator-postgres/elevator.js construct'
     
 Parameters:
     --working-dir= (-w=, o) Location to construct elevator (def=./data-elevator)
     --verbose      (-v,  o) Verbose mode
 
 Examples:
-    node ./node-modules/data-elevator-mongodb/elevator.js construct
-    node ./node-modules/data-elevator-mongodb/elevator.js construct  -c="./config"
+    node ./node-modules/data-elevator-postgres/elevator.js construct
+    node ./node-modules/data-elevator-postgres/elevator.js construct  -c="./config"
 ```
 
 ### add ###
