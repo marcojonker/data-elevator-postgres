@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "description": "Flexible utility for migration of data sources with migration status stored in postgres",
   "main": "elevator.js",
-  "keywords": ["migrate", "migrations", "postgres", "data", "datasource", "database", "utility", "tool"],
+  "keywords": ["data-elevator", "data-elevator-postgres", "migrate", "migrations", "postgres", "data", "datasource", "database", "utility", "tool"],
   "bugs": "https://bitbucket.org/cacadu/data-elevator-postgres/issues/",
   "license": "MIT",
   "author": "Marco Jonker",
@@ -20,7 +20,7 @@
   },
   "dependencies" : {
     "async": "^1.x",
-    "node-postgres": "*",
+    "pg": "^4.x",
     "data-elevator": "<2.0.0"
   },
   "engines": {
