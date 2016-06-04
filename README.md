@@ -4,36 +4,52 @@ The data elevator postgres is an easy to use and very flexible utility for migra
 
 Storing the current migration level in a database brings advantages when a project shares its data source with multiple running instances of a project. For example when multiple developers working with one database or the project runs on multiple servers.
 
+# RELATED MODULES #
+
+* data-elevator ([npm](https://www.npmjs.com/package/data-elevator), [bitbucket](https://bitbucket.org/cacadu/data-elevator/overview)) - store elevator migration levels in file or in a custom data source
+* data-elevator-mongodb ([npm](https://www.npmjs.com/package/data-elevator-mongodb), [bitbucket](https://bitbucket.org/cacadu/data-elevator-mongodb/overview)) - store elevator migration levels in mongodb out of the box
+* data-elevator-mysql [npm](https://www.npmjs.com/package/data-elevator-mysql), [bitbucket](https://bitbucket.org/cacadu/data-elevator-mysql/overview)) - store elevator migration levels in mysql out of the box
+
 # INSTALL #
 
-* Add the data-elevator-postgres to packages.json
-* Install the module
 ```
-#!shell
-
-npm install
+npm install data-elevator-postgres
 ```
 
 # QUICKSTART #
-*
-Note: It is best to run commands from the root directory of you project because the project handles directories relative to the location the process was started from.*
+
+*Note: It is best to run commands from the root directory of you project because the project handles directories relative to the location the process was started from.*
 
 1 Construct a new data elevator for the project.
 ```
-#!shell
-node ./node-modules/data-elevator-postgres/elevator.js construct
+node ./node-modules/data-elevator-postgres/elevator construct
 ```
 2 Add a new floor.
 ```
-#!shell
-node ./data-elevator/elevator.js add --name="add phone number to users"
+node ./data-elevator/elevator add --name="add phone number to users"
 ```
 3 Enter you migration code in the generated floor file located in './data-elevator/floors/'.
 
 4 Move the elevator up to migrate your data.
 ```
-#!shell
-node ./data-elevator/elevator.js up
+node ./data-elevator/elevator up
+```
+5 Move the elevator down to downgrade your data
+```
+node ./data-elevator/elevator down --floor=3
+```
+# CONFIGURATION #
+
+* **levelControllerConfig.tableName:** Name of the table to store the migration level in
+* **levelControllerConfig.connectionOptions:** Connection options see [postgres node documentation](https://github.com/brianc/node-postgres/wiki/)
+
+```
+var config = {
+    levelControllerConfig: {
+       collectionName: "_data_elevator",
+       connectionOptions: null
+    }
+}
 ```
 
 # COMMANDS #
@@ -41,26 +57,24 @@ node ./data-elevator/elevator.js up
 Parameters explained:
 
 ```
-#!shell
-
 --<parameter_name> (<alias>, <r=required, o=optional>) <description>     
-
 ```
+
 ### construct ###
 
 Construct a new data elevator in you project. In principle this command is only performed once per project.
 
 ```
-#!shell
-Command: 'node ./node-modules/data-elevator-postgres/elevator.js construct'
+Command: 'node ./node-modules/data-elevator-postgres construct'
     
 Parameters:
+    --config-dir=  (-c=, o) Data elevator config dir (default=./data-elevator)
     --working-dir= (-w=, o) Location to construct elevator (def=./data-elevator)
     --verbose      (-v,  o) Verbose mode
 
 Examples:
-    node ./node-modules/data-elevator-postgres/elevator.js construct
-    node ./node-modules/data-elevator-postgres/elevator.js construct  -c="./config"
+    node ./node-modules/data-elevator-postgres construct
+    node ./node-modules/data-elevator-postgres construct  -c="./config"
 ```
 
 ### add ###
@@ -68,8 +82,7 @@ Examples:
 A new floor file will be created in which data migrations can be implemented. It is recommended to use the '--name' parameters for easier identification of the purpose of a floor.
 
 ```
-#!shell
-Command:   'node ./<working-dir>/elevator.js add'
+Command:   'node ./<working-dir>/elevator add'
     
 Parameters:
     --name=        (-n=, o) Custom name of the floor
@@ -78,8 +91,8 @@ Parameters:
     --verbose      (-v,  o) Verbose mode
 
 Examples:
-    node ./data-elevator/elevator.js add
-    node ./data-elevator/elevator.js add -n="migrating users" -c="./config"
+    node ./data-elevator/elevator add
+    node ./data-elevator/elevator add -n="migrating users" -c="./config"
 ```
 
 ### up ###
@@ -87,8 +100,7 @@ Examples:
 Elevator will move up and perform the migrations for each floor passed by.
 
 ```
-#!shell
-Command:    'node ./<working-dir>/elevator.js up'
+Command:    'node ./<working-dir>/elevator up'
     
 Parameters:
     --floor=       (-f=, o) Floor to move to, if undefined elevator moves to the top   
@@ -97,9 +109,8 @@ Parameters:
     --verbose      (-v,  o) Verbose mode
 
 Examples:
-    node ./data-elevator/elevator.js up
-    node ./data-elevator/elevator.js up -f=5 -c="./config"
-
+    node ./data-elevator/elevator up
+    node ./data-elevator/elevator up -f=5 -c="./config"
 ```
 
 ### down ###
@@ -107,8 +118,7 @@ Examples:
 Elevator will move down and perform the migrations for each floor passed by.
 
 ```
-#!shell
-Command:    'node ./<working-dir>/elevator.js down'
+Command:    'node ./<working-dir>/elevator down'
 
 Parameters:
     --floor=       (-f=, r) Floor to move to
@@ -117,8 +127,8 @@ Parameters:
     --verbose      (-v,  o) Verbose mode
 
 Examples:
-    node ./data-elevator/elevator.js down -f=2
-    node ./data-elevator/elevator.js down -f=5 -c="./config"
+    node ./data-elevator/elevator down -f=2
+    node ./data-elevator/elevator down -f=5 -c="./config"
 ```
 
 ### status ###
@@ -126,8 +136,7 @@ Examples:
 Display the last action of the elevator.
 
 ```
-#!shell
-Command:    'node ./<working-dir>/elevator.js status'
+Command:    'node ./<working-dir>/elevator status'
 
 Parameters:
     --config-dir=  (-c=, o) Data elevator config dir (default=./data-elevator)
@@ -135,27 +144,8 @@ Parameters:
     --verbose      (-v,  o) Verbose mode
 
 Examples:
-    node ./data-elevator/elevator.js status
-    node ./data-elevator/elevator.js status -c="./config"
-```
-
-# CONFIGURATION #
-
-* **levelControllerConfig.collectionName:** Name of the collection to store the migration level in
-* **levelControllerConfig.connectionOptions:** Connection options,
-* **levelControllerConfig.connectionUrl:** Url for database connection
-
-```
-#!javascript
-
-var config = {
-    levelControllerConfig: {
-       collectionName: "_data_elevator",
-       connectionOptions: null,
-       connectionUrl: "localhost:27012/test"
-    }
-}
-
+    node ./data-elevator/elevator status
+    node ./data-elevator/elevator status -c="./config"
 ```
 
 # FLOOR TEMPLATE #
@@ -163,7 +153,6 @@ var config = {
 When a new floor is added the file 'floor-template.js' from the working directory is used as the template. Alterations to floor template are added to new floors. The minimal template contains at least the 'onUp' and 'onDown' function.
 
 ```
-#!javascript
 module.exports = {
     /**
      * Data transformation that need to be performed when migrating the data up
@@ -182,7 +171,6 @@ module.exports = {
         return callback(null);
     }
 }
-
 ```
 
 ### FloorWorkerParameters ###
@@ -190,16 +178,13 @@ module.exports = {
 The FloorWorkerParameters gives access to the current configuration, the logger and the current floor object. 
 
 ```
-#!javascript
-
 var FloorWorkerParameters = function(config, logger, floor) {
     this.config = config;
     this.floor = floor;
     this.logger = logger;
 };
-
 ```
 
 # CUSTOM STUFF #
 
-This documentation contains only the basics about implementing a data elevator. For a more detailed documentation about the customization possibilities see the [data elevator documentation](Link URL).
+This documentation contains only the basics about implementing a data elevator. For a more detailed documentation about the customization possibilities see the [data elevator documentation](https://www.npmjs.com/package/data-elevator).
