@@ -6,13 +6,12 @@ Storing the current migration level in a database brings advantages when a proje
 
 # RELATED MODULES #
 
-* data-elevator [npm](https://www.npmjs.com/package/data-elevator), [bitbucket](https://bitbucket.org/cacadu/data-elevator/overview)) - store elevator migration levels in file or in a custom data source
+* data-elevator ([npm](https://www.npmjs.com/package/data-elevator), [bitbucket](https://bitbucket.org/cacadu/data-elevator/overview)) - store elevator migration levels in file or in a custom data source
 * data-elevator-mongodb ([npm](https://www.npmjs.com/package/data-elevator-mongodb), [bitbucket](https://bitbucket.org/cacadu/data-elevator-mongodb/overview)) - store elevator migration levels in mongodb out of the box
 * data-elevator-mysql [npm](https://www.npmjs.com/package/data-elevator-mysql), [bitbucket](https://bitbucket.org/cacadu/data-elevator-mysql/overview)) - store elevator migration levels in mysql out of the box
 
 # INSTALL #
 
-* Install the module
 ```
 npm install data-elevator-postgres
 ```
@@ -172,7 +171,6 @@ module.exports = {
         return callback(null);
     }
 }
-
 ```
 
 ### FloorWorkerParameters ###
@@ -185,7 +183,6 @@ var FloorWorkerParameters = function(config, logger, floor) {
     this.floor = floor;
     this.logger = logger;
 };
-
 ```
 
 # CUSTOM STUFF #
