@@ -25,6 +25,7 @@
     "upgrade",
     "postgres",
     "data-elevator",
+    "data-elevator-postgres",
     "elevate data",
     "datasource",
     "database"
