@@ -4,6 +4,15 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [4.0.0] - 2021-09-27
+### Updated
+- Async library version
+- Pg library version
+- Data elevator version
+- Update unittests with mocha
+- Refactor code to es6
+- Eslint
+
 ## [2.1.0] - 2016-11-04
 ### Updated
 - Tested with NodeJs 7

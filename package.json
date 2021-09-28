@@ -1,10 +1,10 @@
 {
   "name": "data-elevator-postgres",
-  "version": "2.1.0",
+  "version": "4.0.0-rc",
   "description": "Flexible utility for managing migrations of postgres data sources",
   "main": "elevator.js",
-    "bin" : { 
-    "data-elevator-postgres" : "./bin/data-elevator.js" 
+  "bin": {
+    "data-elevator-postgres": "./bin/data-elevator.js"
   },
   "keywords": [
     "migrate",
@@ -29,9 +29,10 @@
     "elevate data",
     "datasource",
     "database"
- ],
+  ],
   "scripts": {
-    "test": "node ./test/test.js"
+    "test": "./node_modules/mocha/bin/mocha",
+    "lint": "./node_modules/.bin/eslint ./lib"
   },
   "bugs": "https://github.com/marcojonker/data-elevator-postgres/issues/",
   "license": "MIT",
@@ -46,17 +47,21 @@
     "bin",
     "test"
   ],
-  "repository" : { 
-    "type" : "git",
-    "url" : "https://github.com/marcojonker/data-elevator-postgres.git"
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/marcojonker/data-elevator-postgres.git"
   },
-  "homepage" : "http://cacadu.nl/opensource",
-  "dependencies" : {
-    "async": "^2.x",
-    "pg": "^6.x",
-    "data-elevator": "^2.x"
+  "homepage": "https://www.cacadu.eu/opensource",
+  "dependencies": {
+    "async": "^3.2.1",
+    "pg": "^8.7.1",
+    "data-elevator": "^4.0.0"
+  },
+  "devDependencies": {
+    "eslint": "^7.32.0",
+    "mocha": "^9.1.1"
   },
   "engines": {
-    "node": ">=5.0.0"
+    "node": ">=12.10.0"
   }
 }
