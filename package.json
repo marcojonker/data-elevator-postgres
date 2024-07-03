@@ -1,6 +1,6 @@
 {
   "name": "data-elevator-postgres",
-  "version": "4.0.0",
+  "version": "5.0.1",
   "description": "Flexible utility for managing migrations of postgres data sources",
   "main": "elevator.js",
   "bin": {
@@ -55,7 +55,7 @@
   "dependencies": {
     "async": "^3.2.1",
     "pg": "^8.7.1",
-    "data-elevator": "^4.0.0"
+    "data-elevator": "^5.0.1"
   },
   "devDependencies": {
     "eslint": "^7.32.0",

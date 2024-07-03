@@ -3,9 +3,5 @@ services:
   postgres:
     image: postgres
     restart: always
-    environment:
-      POSTGRES_USER: bla
-      POSTGRES_PASSWORD: admin
-      POSTGRES_DB: test
     ports:
       - 5432:5432

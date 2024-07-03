@@ -4,9 +4,9 @@ var config = {
        connectionOptions: {
             host: "localhost",
             port: 5432,
-            database: "test",
-            user: "admin",
-            password: "admin"
+            database: "postgres",
+            user: "postgres",
+            password: "postgres"
        }
     }
 }
