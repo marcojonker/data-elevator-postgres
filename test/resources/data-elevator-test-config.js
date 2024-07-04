@@ -2,7 +2,7 @@ var config = {
     levelControllerConfig: {
        tableName: "_data_elevator",
        connectionOptions: {
-            host: "localhost",
+            host: "postgres",
             port: 5432,
             database: "postgres",
             user: "postgres",
