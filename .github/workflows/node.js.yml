@@ -14,11 +14,16 @@ jobs:
 
     runs-on: ubuntu-latest
 
+    strategy:
+      matrix:
+        node-version: [12.x]
+        postgres-version: [16-alpine]
+
     container: node:16-bullseye
 
     services:
       postgres:
-        image: postgres
+        image: postgres:${{ matrix.postgres-version }}
         env:
           POSTGRES_PASSWORD: postgres
         options: >-
@@ -29,9 +34,7 @@ jobs:
         ports:
           - 5432:5432
 
-    strategy:
-      matrix:
-        node-version: [12.x]
+
         # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
 
     steps:
