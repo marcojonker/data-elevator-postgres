@@ -1,4 +1,4 @@
-var config = {
+const config = {
     levelControllerConfig: {
        tableName: "_data_elevator",
        connectionOptions: {
