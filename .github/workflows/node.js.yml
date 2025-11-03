@@ -16,10 +16,10 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [12.x]
-        postgres-version: [16-alpine]
+        node-version: [18.x]
+        postgres-version: [18-alpine, 17-alpine, 16-alpine]
 
-    container: node:16-bullseye
+    container: node:18-bullseye
 
     services:
       postgres:
@@ -45,4 +45,5 @@ jobs:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
     - run: npm install
+    - run: npm run lint
     - run: npm test
